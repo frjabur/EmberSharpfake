@@ -33,6 +33,7 @@ namespace EmberSharpSDK
                            {
                                { "ember_spirit_fire_remnant", true },
                                { "ember_spirit_sleight_of_fist", true },
+							   { "ember_spirit_flame_guard", true },
                                { "ember_spirit_activate_fire_remnant", true },
 							   { "ember_spirit_searing_chains", true }
                            };

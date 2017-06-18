@@ -78,6 +78,8 @@ namespace EmberSharpSDK
 
         private Ability Remnant { get; set; }
 
+		private Ability Flame { get; set; }
+
         private Lazy<IInventoryManager> Inventory { get; }
 
         private TaskHandler KillStealHandler { get; set; }
@@ -431,6 +433,7 @@ namespace EmberSharpSDK
             this.Remnant = UnitExtensions.GetAbilityById(this.Owner, AbilityId.ember_spirit_fire_remnant);
             this.Fist = UnitExtensions.GetAbilityById(this.Owner, AbilityId.ember_spirit_sleight_of_fist);
             this.Activator = UnitExtensions.GetAbilityById(this.Owner, AbilityId.ember_spirit_activate_fire_remnant);
+			this.Flame = UnitExtensions.GetAbilityById(this.Owner, AbilityId.ember_spirit_flame_guard);
             this.Chains = UnitExtensions.GetAbilityById(this.Owner, AbilityId.ember_spirit_searing_chains);
 
             foreach (var item in Inventory.Value.Items)
