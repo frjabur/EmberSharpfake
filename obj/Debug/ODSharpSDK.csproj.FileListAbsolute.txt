@@ -1,0 +1,16 @@
+D:\Downloads\ODSharpSDK\ODSharpSDK\ODSharpSDK\obj\Debug\ODSharpSDK.csprojResolveAssemblyReference.cache
+D:\Downloads\ODSharpSDK\ODSharpSDK\ODSharpSDK\bin\Debug\ODSharpSDK.dll.config
+D:\Downloads\ODSharpSDK\ODSharpSDK\ODSharpSDK\bin\Debug\ODSharpSDK.dll
+D:\Downloads\ODSharpSDK\ODSharpSDK\ODSharpSDK\bin\Debug\ODSharpSDK.pdb
+D:\Downloads\ODSharpSDK\ODSharpSDK\ODSharpSDK\bin\Debug\clipper_library.dll
+D:\Downloads\ODSharpSDK\ODSharpSDK\ODSharpSDK\bin\Debug\Ensage.Common.dll
+D:\Downloads\ODSharpSDK\ODSharpSDK\ODSharpSDK\bin\Debug\Ensage.dll
+D:\Downloads\ODSharpSDK\ODSharpSDK\ODSharpSDK\bin\Debug\Ensage.SDK.dll
+D:\Downloads\ODSharpSDK\ODSharpSDK\ODSharpSDK\bin\Debug\PlaySharp.Service.dll
+D:\Downloads\ODSharpSDK\ODSharpSDK\ODSharpSDK\bin\Debug\PlaySharp.Toolkit.dll
+D:\Downloads\ODSharpSDK\ODSharpSDK\ODSharpSDK\bin\Debug\SharpDX.Mathematics.dll
+D:\Downloads\ODSharpSDK\ODSharpSDK\ODSharpSDK\bin\Debug\clipper_library.pdb
+D:\Downloads\ODSharpSDK\ODSharpSDK\ODSharpSDK\bin\Debug\Ensage.Common.pdb
+D:\Downloads\ODSharpSDK\ODSharpSDK\ODSharpSDK\bin\Debug\Ensage.SDK.pdb
+D:\Downloads\ODSharpSDK\ODSharpSDK\ODSharpSDK\obj\Debug\ODSharpSDK.dll
+D:\Downloads\ODSharpSDK\ODSharpSDK\ODSharpSDK\obj\Debug\ODSharpSDK.pdb
