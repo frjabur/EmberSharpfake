@@ -99,6 +99,40 @@ namespace EmberSharpSDK
         private IEnumerable<Unit> Remnants
          => ObjectManager.GetEntities<Unit>().Where(x => x.Name == "npc_dota_ember_spirit_fire_remnant");
 
+		//Use Remnant
+		if (this.Remnant != null &&
+		target != null && Owner.Distance2D(target) <= 1300 &&
+		this.Remnant.CanBeCasted() && this.Config.AbilityToggler.Value.IsEnabled(this.Remnant.Name))
+		{
+		/* var speed = (Remnant.GetAbilityData("speed_multiplier") / 100) * Owner.MovementSpeed;
+		var delay = (int)(((Remnant.FindCastPoint() + this.Owner.GetTurnTime(target)) * speed) + Game.Ping);
+		var input =
+			new PredictionInput(
+				Owner,
+				target,
+				delay,
+				speed,
+				1500,
+				Remnant.GetAbilityData("radius")
+				PredictionSkillshotType.SkillshotCircle,
+				true)
+				{
+				CollisionTypes = CollisionTypes.None
+				};
+
+				var output = Prediction.Value.GetPrediction(input);
+
+				if (output.HitChance >= HitChance.Medium)
+				{
+				Log.Debug("Using Remnant");
+				this.Remnant.UseAbility(output.CastPosition);
+				await Task.Delay(delay);
+				this.ActiveRemnant.UseAbility(target.Position);
+				await Await.Delay(this.GetItemDelay(target) + (int)Game.Ping, token);
+				}
+				*/
+
+
 
 
             if (this.BloodThorn != null &&
