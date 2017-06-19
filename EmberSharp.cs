@@ -99,161 +99,6 @@ namespace EmberSharpSDK
         private IEnumerable<Unit> Remnants
          => ObjectManager.GetEntities<Unit>().Where(x => x.Name == "npc_dota_ember_spirit_fire_remnant");
 
-        public override async Task ExecuteAsync(CancellationToken token)
-        {
-            this.KillStealHandler.RunAsync();
-
-            var target = this.TargetSelector.Value.Active.GetTargets().FirstOrDefault(x => !x.IsInvulnerable() && !UnitExtensions.IsMagicImmune(x) && x.IsAlive);
-
-            var silenced = UnitExtensions.IsSilenced(this.Owner);
-
-            var sliderValue = this.Config.UseBlinkPrediction.Item.GetValue<Slider>().Value;
-
-            if (this.BlinkDagger != null &&
-            this.BlinkDagger.IsValid &&
-            target != null && Owner.Distance2D(target) <= 1200 + sliderValue && !(Owner.Distance2D(target) <= 400) &&
-            this.BlinkDagger.CanBeCasted(target) &&
-            this.Config.ItemToggler.Value.IsEnabled(this.BlinkDagger.Name))
-            {
-                var l = (this.Owner.Distance2D(target) - sliderValue) / sliderValue;
-                var posA = this.Owner.Position;
-                var posB = target.Position;
-                var x = (posA.X + (l * posB.X)) / (1 + l);
-                var y = (posA.Y + (l * posB.Y)) / (1 + l);
-                var position = new Vector3((int)x, (int)y, posA.Z);
-
-                Log.Debug("Using BlinkDagger");
-                this.BlinkDagger.UseAbility(position);
-                await Await.Delay(this.GetItemDelay(target), token);
-            }
-            //Are we in an ult phase?
-            var inUltimate = UnitExtensions.HasModifier(Owner, "modifier_ember_spirit_fire_remnant") || Activator.IsInAbilityPhase;
-
-            //Check if we're silenced, our target is alive, and we have a target.
-            var UltDistance = Config.DistanceForUlt.Item.GetValue<Slider>().Value;
-
-            //Check for distance to target and push against slider value
-            if (target != null && target.IsAlive
-                && Owner.Distance2D(target) >= 400 && Owner.Distance2D(target) <= UltDistance
-                && Config.AbilityToggler.Value.IsEnabled(Activator.Name) && !silenced)
-            {
-                //Based on whether they are moving or not, predict where they will be.
-                if (target.IsMoving)
-                {
-                    var PredictedPosition = EnsagePredict.InFront(target, 200);
-                    //Check the mana consumed from our prediction.
-                    double TempManaConsumed = (Activator.GetAbilityData("fire_remnant_initial_mana_base") + ((Activator.GetAbilityData("fire_remnant_initial_mana_percentage") / 100) * Owner.MaximumMana))
-                            + ((Ensage.SDK.Extensions.EntityExtensions.Distance2D(Owner, PredictedPosition) / 100) * (((Activator.GetAbilityData("fire_remnant_travel_cost_percent") / 100) * Owner.MaximumMana)));
-                    if (TempManaConsumed <= Owner.Mana && !inUltimate)
-                    {
-                        Activator.UseAbility(PredictedPosition);
-                        await Await.Delay((int)(Activator.FindCastPoint() + Owner.GetTurnTime(PredictedPosition) * 2250 + Game.Ping), token);
-                    }
-                }
-
-                else
-                {
-                    var PredictedPosition = target.NetworkPosition;
-                    double TempManaConsumed = (Activator.GetAbilityData("fire_remnant_initial_mana_base") + ((Activator.GetAbilityData("fire_remnant_initial_mana_percentage") / 100) * Owner.MaximumMana))
-                           + ((Ensage.SDK.Extensions.EntityExtensions.Distance2D(Owner, PredictedPosition) / 100) * (((Activator.GetAbilityData("fire_remnant_travel_cost_percent") / 100) * Owner.MaximumMana)));
-                    if (TempManaConsumed <= Owner.Mana && !inUltimate)
-                    {
-                        Activator.UseAbility(PredictedPosition);
-                        await Await.Delay((int)(Activator.FindCastPoint() + Owner.GetTurnTime(PredictedPosition) * 2250 + Game.Ping), token);
-                    }
-
-                }
-
-            }
-
-            //Vars we need before combo.
-            bool HasAghanims = Owner.HasItem(ClassId.CDOTA_Item_UltimateScepter);
-            float FistCost = Fist.GetManaCost(Fist.Level - 1);
-            float RemnantCost = Remnant.GetManaCost(Remnant.Level - 1);
-            float CurrentMana = Owner.Mana;
-            float TotalMana = Owner.MaximumMana;
-
-            //This is here to stop us from ulting after our target dies.
-            float RemnantAutoDamage = this.Remnant.GetAbilityData("fire_remnant_damage");
-            RemnantAutoDamage += (Owner.MinimumDamage + Owner.BonusDamage);
-            RemnantAutoDamage *= GetSpellAmp();
-
-
-            var RemnantAutokillableTar =
-            ObjectManager.GetEntitiesParallel<Hero>()
-                .FirstOrDefault(
-                    x =>
-                        x.IsAlive && x.Team != this.Owner.Team && !x.IsIllusion
-                        && this.Remnant.CanBeCasted() && this.Remnant.CanHit(x)
-                        && x.Health < (RemnantAutoDamage * (1 - x.MagicDamageResist))
-                        && !UnitExtensions.IsMagicImmune(x)
-                        && x.Distance2D(this.Owner) <= 235);
-
-            var ActiveRemnant = Remnants.Any(unit => unit.Distance2D(RemnantAutokillableTar) < 240);
-
-
-            if (!silenced && target != null)
-            {
-                //there is a reason behind this; the default delay on storm ult is larger than a minimum distance travelled.
-                var TargetPosition = target.NetworkPosition;
-                /* TargetPosition *= 100;
-                TargetPosition = target.NetworkPosition + TargetPosition;*/
-                double ManaConsumed = (Activator.GetAbilityData("fire_remnant_initial_mana_base") + ((Activator.GetAbilityData("fire_remnant_initial_mana_percentage") / 100) * CurrentMana))
-                    + ((Ensage.SDK.Extensions.EntityExtensions.Distance2D(Owner, TargetPosition) / 100) * (((Activator.GetAbilityData("fire_remnant_travel_cost_percent") / 100) * CurrentMana)));
-
-                //Always auto attack if we have an overload charge.
-                if (UnitExtensions.HasModifier(Owner, "modifier_ember_spirit_fire_remnant") && target != null)
-                {
-                    Owner.Attack(target);
-                    await Await.Delay(500);
-                }
-
-                //Vortex prioritization logic [do we have q/w enabled, do we have the mana to cast both, do they have lotus, do we have an overload modifier]
-                if (!UnitExtensions.HasModifier(Owner, "modifier_ember_spirit_fire_remnant") &&
-                    Config.AbilityToggler.Value.IsEnabled(Fist.Name) && Fist.CanBeCasted()
-                    && Config.AbilityToggler.Value.IsEnabled(Remnant.Name) && Remnant.CanBeCasted()
-                    && (FistCost + RemnantCost) <= CurrentMana)
-                {
-                    //Use Vortex
-                    if (!HasAghanims)
-                    {
-                        Fist.UseAbility(target);
-                        await Await.Delay(GetAbilityDelay(Owner, Fist), token);
-                    }
-
-                    //Use Vortex differently for aghanims.
-                    else
-                    {
-                        Fist.UseAbility();
-                        await Await.Delay(GetAbilityDelay(Owner, Fist), token);
-                    }
-                }
-
-                //Remnant logic [w is not available, cant ult, close enough for the detonation]
-                if (!UnitExtensions.HasModifier(Owner, "modifier_ember_spirit_fire_remnant") && target.IsAlive &&
-                    Config.AbilityToggler.Value.IsEnabled(Remnant.Name) && Remnant.CanBeCasted()
-                    && !Fist.CanBeCasted() && (CurrentMana <= RemnantCost + ManaConsumed || Owner.Distance2D(target) <= Remnant.GetAbilityData("modifier_ember_spirit_fire_remnant")))
-                {
-                    Remnant.UseAbility();
-                    await Await.Delay(GetAbilityDelay(Owner, Remnant), token);
-                }
-
-                //Ult logic [nothing else is available or we are not in range for a q]
-                if (!UnitExtensions.HasModifier(Owner, "modifier_ember_spirit_fire_remnant") && target.IsAlive &&
-                    Config.AbilityToggler.Value.IsEnabled(Activator.Name) && Activator.CanBeCasted()
-                    && (!Remnant.CanBeCasted() || Owner.Distance2D(target) >= Remnant.GetAbilityData("modifier_ember_spirit_fire_remnant"))
-                    && (!Fist.CanBeCasted(target) || Owner.Distance2D(target) <= UltDistance)
-                    //Don't cast ult if theres a remnant that can kill our target.
-                    && !inUltimate && (RemnantAutokillableTar == null || ActiveRemnant == false))
-                //todo: alternate check for aghanims
-                {
-                    Activator.UseAbility(TargetPosition);
-                    int delay = (int)((Activator.FindCastPoint() + Owner.GetTurnTime(TargetPosition)) * 1250.0 + Game.Ping);
-                    Log.Debug($"{delay}ms to wait.");
-                    await Task.Delay(delay);
-                }
-            }
-
 
 
             if (this.BloodThorn != null &&
@@ -408,6 +253,11 @@ namespace EmberSharpSDK
                 Owner.Attack(AutokillableTar);
                 await Await.Delay(500);
             }
+        }
+
+		protected int GetRemnantDamage(Unit unit)
+        {
+            return (int)Math.Floor((this.Remnant.GetAbilitySpecialData("damage") * (1 - unit.MagicDamageResist)) - (unit.HealthRegeneration * 5)); // testeeeeeeeeeeeeeeeeeeeeeeee
         }
 
         protected int GetAbilityDelay(Unit unit, Ability ability)
