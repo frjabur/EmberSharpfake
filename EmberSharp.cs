@@ -324,7 +324,7 @@ namespace EmberSharpSDK
 			target != null && Owner.Distance2D(target) <= 1300 &&
 			this.Remnant.CanBeCasted() && this.Config.AbilityToggler.Value.IsEnabled(this.Remnant.Name))
 			{
-			var speed = (Remnant.GetAbilityData("speed_multiplier") / 100) * Owner.MovementSpeed;
+			/* var speed = (Remnant.GetAbilityData("speed_multiplier") / 100) * Owner.MovementSpeed;
 			var delay = (int)(((Remnant.FindCastPoint() + this.Owner.GetTurnTime(target)) * speed) + Game.Ping);
 			var input =
 			new PredictionInput(
@@ -350,7 +350,7 @@ namespace EmberSharpSDK
 				this.ActiveRemnant.UseAbility(target.Position);
 				await Await.Delay(this.GetItemDelay(target) + (int)Game.Ping, token);
 				}
-				
+				*/
 
             // make him disabled
             if (await DisableEnemy(target, tk) == DisabledState.UsedAbilityToDisable)
@@ -465,7 +465,7 @@ namespace EmberSharpSDK
                         _ultActivateAbility.UseAbility(predictedPos);
                         await Await.Delay(1, tk);
                         return;
-                    }
+                    }}
         protected override void OnActivate()
         {
             this.KillStealHandler = UpdateManager.Run(this.KillStealAsync, true);
