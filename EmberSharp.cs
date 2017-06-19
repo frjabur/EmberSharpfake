@@ -433,7 +433,7 @@ namespace EmberSharpSDK
                         await Await.Delay(1, tk);
                         return;
                     }
-
+					}
         protected override void OnActivate()
         {
             this.KillStealHandler = UpdateManager.Run(this.KillStealAsync, true);
@@ -586,4 +586,3 @@ namespace EmberSharpSDK
             }
         }
     }
-}
