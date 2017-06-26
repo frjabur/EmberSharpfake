@@ -1,8 +1,8 @@
-﻿// <copyright file="EmberSharpConfig.cs" company="Ensage">
+﻿// <copyright file="StormSharpConfig.cs" company="Ensage">
 //    Copyright (c) 2017 Ensage.
 // </copyright>
 
-namespace EmberSharpSDK
+namespace StormSharpSDK
 {
     using System;
     using System.Collections.Generic;
@@ -10,11 +10,11 @@ namespace EmberSharpSDK
     using Ensage.Common.Menu;
     using Ensage.SDK.Menu;
 
-    public class EmberSharpConfig
+    public class StormSharpConfig
     {
         private bool _disposed;
 
-        public EmberSharpConfig()
+        public StormSharpConfig()
         {
             var itemDict = new Dictionary<string, bool>
                            {
@@ -31,14 +31,12 @@ namespace EmberSharpSDK
 
             var spellDict = new Dictionary<string, bool>
                            {
-                               { "ember_spirit_fire_remnant", true },
-                               { "ember_spirit_sleight_of_fist", true },
-							   { "ember_spirit_flame_guard", true },
-                               { "ember_spirit_activate_fire_remnant", true },
-							   { "ember_spirit_searing_chains", true }
+                               { "storm_spirit_static_remnant", true },
+                               { "storm_spirit_electric_vortex", true },
+                               { "storm_spirit_ball_lightning", true }
                            };
 
-            this.Menu = MenuFactory.Create("EmberSharpSDK");
+            this.Menu = MenuFactory.Create("StormSharpSDK");
             this.Key = this.Menu.Item("Combo Key", new KeyBind(32));
             this.Key.Item.Tooltip = "Hold this key to start combo mode.";
             this.KillStealEnabled = this.Menu.Item("Killsteal toggle", true);

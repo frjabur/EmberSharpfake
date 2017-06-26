@@ -2,7 +2,7 @@
 //    Copyright (c) 2017 Ensage.
 // </copyright>
 
-namespace EmberSharpSDK
+namespace StormSharpSDK
 {
     using System;
     using System.ComponentModel.Composition;
@@ -18,7 +18,7 @@ namespace EmberSharpSDK
     using Ensage.SDK.Service.Metadata;
     using Ensage.SDK.TargetSelector;
 
-    [ExportPlugin("EmberSharpSDK", HeroId.npc_dota_hero_ember_spirit)]
+    [ExportPlugin("StormSharpSDK", HeroId.npc_dota_hero_storm_spirit)]
     public class Program : Plugin
     {
         private readonly Lazy<IInputManager> input;
@@ -46,16 +46,16 @@ namespace EmberSharpSDK
             this.targetManager = targetManager;
         }
 
-        public EmberSharpConfig Config { get; private set; }
+        public StormSharpConfig Config { get; private set; }
 
-        public EmberSharp OrbwalkerMode { get; private set; }
+        public StormSharp OrbwalkerMode { get; private set; }
 
         protected override void OnActivate()
         {
-            this.Config = new EmberSharpConfig();
+            this.Config = new StormSharpConfig();
             this.Config.Key.Item.ValueChanged += this.HotkeyChanged;
 
-            this.OrbwalkerMode = new EmberSharp(
+            this.OrbwalkerMode = new StormSharp(
                 KeyInterop.KeyFromVirtualKey((int)this.Config.Key.Value.Key),
                 this.Config,
                 this.orbwalkerManager,

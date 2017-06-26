@@ -36,48 +36,48 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="clipper_library">
-      <HintPath>C:\Program Files (x86)\LLL\References\clipper_library.dll</HintPath>
+      <HintPath>C:\Users\ihate\Documents\Ensage\References\clipper_library.dll</HintPath>
     </Reference>
     <Reference Include="Ensage">
-      <HintPath>C:\Program Files (x86)\LLL\References\Ensage.dll</HintPath>
+      <HintPath>C:\Users\ihate\Documents\Ensage\References\Ensage.dll</HintPath>
     </Reference>
     <Reference Include="Ensage.Common">
-      <HintPath>C:\Program Files (x86)\LLL\References\Ensage.Common.dll</HintPath>
+      <HintPath>C:\Users\ihate\Documents\Ensage\References\Ensage.Common.dll</HintPath>
     </Reference>
     <Reference Include="Ensage.SDK">
-      <HintPath>C:\Program Files (x86)\LLL\References\Ensage.SDK.dll</HintPath>
+      <HintPath>C:\Users\ihate\Documents\Ensage\References\Ensage.SDK.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>C:\Program Files (x86)\LLL\References\Newtonsoft.Json.dll</HintPath>
+      <HintPath>C:\Users\ihate\Documents\Ensage\References\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PlaySharp.Service">
-      <HintPath>C:\Program Files (x86)\LLL\References\PlaySharp.Service.dll</HintPath>
+      <HintPath>C:\Users\ihate\Documents\Ensage\References\PlaySharp.Service.dll</HintPath>
     </Reference>
     <Reference Include="PlaySharp.Toolkit">
-      <HintPath>C:\Program Files (x86)\LLL\References\PlaySharp.Toolkit.dll</HintPath>
+      <HintPath>C:\Users\ihate\Documents\Ensage\References\PlaySharp.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX">
-      <HintPath>C:\Program Files (x86)\LLL\References\SharpDX.dll</HintPath>
+      <HintPath>C:\Users\ihate\Documents\Ensage\References\SharpDX.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.Direct2D1">
-      <HintPath>C:\Program Files (x86)\LLL\References\SharpDX.Direct2D1.dll</HintPath>
+      <HintPath>C:\Users\ihate\Documents\Ensage\References\SharpDX.Direct2D1.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.Direct3D11">
-      <HintPath>C:\Program Files (x86)\LLL\References\SharpDX.Direct3D11.dll</HintPath>
+      <HintPath>C:\Users\ihate\Documents\Ensage\References\SharpDX.Direct3D11.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.Direct3D9">
-      <HintPath>C:\Program Files (x86)\LLL\References\SharpDX.Direct3D9.dll</HintPath>
+      <HintPath>C:\Users\ihate\Documents\Ensage\References\SharpDX.Direct3D9.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.DXGI">
-      <HintPath>C:\Program Files (x86)\LLL\References\SharpDX.DXGI.dll</HintPath>
+      <HintPath>C:\Users\ihate\Documents\Ensage\References\SharpDX.DXGI.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.Mathematics">
-      <HintPath>C:\Program Files (x86)\LLL\References\SharpDX.Mathematics.dll</HintPath>
+      <HintPath>C:\Users\ihate\Documents\Ensage\References\SharpDX.Mathematics.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Collections.Immutable, Version=1.1.37.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\LLL\References\System.Collections.Immutable.dll</HintPath>
+      <HintPath>C:\Users\ihate\Documents\Ensage\References\System.Collections.Immutable.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -90,8 +90,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EmberSharp.cs" />
-    <Compile Include="EmberConfig.cs" />
+    <Compile Include="StormSharp.cs" />
+    <Compile Include="StormConfig.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
