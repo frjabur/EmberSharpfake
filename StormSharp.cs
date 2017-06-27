@@ -245,7 +245,7 @@ namespace StormSharpSDK
                     && !inUltimate && (RemnantAutokillableTar == null || ActiveRemnant == false))
                 //todo: alternate check for aghanims
                 {
-                    Lightning.UseAbility(target.NetworkPosition + TargetPosition); //TargetPosition 
+                    Lightning.UseAbility(EnsagePredict(target, 200)); //TargetPosition 
                     int delay = (int)((Lightning.FindCastPoint() + Owner.GetTurnTime(TargetPosition)) * 1250.0 + Game.Ping);
                     Log.Debug($"{delay}ms to wait.");
                     await Task.Delay(delay);
