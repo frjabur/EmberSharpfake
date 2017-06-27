@@ -246,7 +246,7 @@ namespace StormSharpSDK
                 //todo: alternate check for aghanims
                 {
                     Lightning.UseAbility(TargetPosition);
-                    int delay = (int)((Lightning.FindCastPoint() + Owner.GetTurnTime(TargetPosition)) * 1250.0 + Game.Ping);
+                    int delay = (int)((Lightning.FindCastPoint() + Owner.GetTurnTime(TargetPosition)) * 125.0 + Game.Ping);
                     Log.Debug($"{delay}ms to wait.");
                     await Task.Delay(delay);
                 }
