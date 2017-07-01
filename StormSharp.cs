@@ -258,8 +258,8 @@ namespace StormSharpSDK
                 //var x = (posA.X + (l * posB.X)) / (1 + l);
                 //var y = (posA.Y + (l * posB.Y)) / (1 + l);
                 //var position = new Vector3((int)x, (int)y, posA.Z);
-                    Lightning.UseAbility(PredictedPosition); //TargetPosition this.Owner.Position 
-                    int delay = (int)((Lightning.FindCastPoint() + Owner.GetTurnTime(PredictedPosition)) * 1250.0 + Game.Ping);
+                    Lightning.UseAbility(Game.MousePosition); //TargetPosition this.Owner.Position 
+                    int delay = (int)((Lightning.FindCastPoint() + Owner.GetTurnTime(Game.MousePosition)) * 1250.0 + Game.Ping);
                     Log.Debug($"{delay}ms to wait.");
                     await Task.Delay(delay);
                 }
