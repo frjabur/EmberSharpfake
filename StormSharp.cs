@@ -245,7 +245,7 @@ namespace StormSharpSDK
                     && !inUltimate && (RemnantAutokillableTar == null || ActiveRemnant == false))
                 //todo: alternate check for aghanims
                 {
-                var target = this.TargetSelector.Value.Active.GetTargets().FirstOrDefault(x => !x.IsInvulnerable() && x.Distance2D(this.Owner) <= this.Owner.AttackRange * 2);
+                var target2 = this.TargetSelector.Value.Active.GetTargets().FirstOrDefault(x => !x.IsInvulnerable() && x.Distance2D(this.Owner) <= this.Owner.AttackRange * 2);
                 var l = (this.Owner.Distance2D(target));
                 var posA = this.Owner.Position;
                 var posB = target.Position;
@@ -259,8 +259,8 @@ namespace StormSharpSDK
                 //var x = (posA.X + (l * posB.X)) / (1 + l);
                 //var y = (posA.Y + (l * posB.Y)) / (1 + l);
                 //var position = new Vector3((int)x, (int)y, posA.Z);
-                    Lightning.UseAbility(target); //TargetPosition this.Owner.Position 
-                    int delay = (int)((Lightning.FindCastPoint() + Owner.GetTurnTime(target)) * 1250.0 + Game.Ping);
+                    Lightning.UseAbility(target2); //TargetPosition this.Owner.Position 
+                    int delay = (int)((Lightning.FindCastPoint() + Owner.GetTurnTime(target2)) * 1250.0 + Game.Ping);
                     Log.Debug($"{delay}ms to wait.");
                     await Task.Delay(delay);
                 }
