@@ -245,11 +245,11 @@ namespace StormSharpSDK
                     && !inUltimate && (RemnantAutokillableTar == null || ActiveRemnant == false))
                 //todo: alternate check for aghanims
                 {
-                var l = (this.Owner.Distance2D(target));
+                var l = (this.Owner.Distance2D(target) - 200 / 200);
                 var posA = this.Owner.Position;
                 var posB = target.Position;
-                var x = (posA.X - (l * posB.X)) / (1 + 1);
-                var y = (posA.Y - (l * posB.Y)) / (1 + 1);
+                var x = (posA.X + (l * posB.X)) / (1 + 1);
+                var y = (posA.Y + (l * posB.Y)) / (1 + 1);
                 var position = new Vector3((int)x, (int)y, posA.Z);
                 
                 //var l = (this.Owner.Distance2D(target) - sliderValue) / sliderValue;
