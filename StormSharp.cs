@@ -258,7 +258,7 @@ namespace StormSharpSDK
                 //var x = (posA.X + (l * posB.X)) / (1 + l);
                 //var y = (posA.Y + (l * posB.Y)) / (1 + l);
                 //var position = new Vector3((int)x, (int)y, posA.Z);
-                    Lightning.UseAbility(this.Owner.Distance2D(target)); //TargetPosition this.Owner.Position 
+                    Lightning.UseAbility(this.Owner.Position - this.Owner.Distance2D(target)); //TargetPosition this.Owner.Position 
                     int delay = (int)((Lightning.FindCastPoint() + Owner.GetTurnTime(target.NetworkPosition)) * 1250.0 + Game.Ping);
                     Log.Debug($"{delay}ms to wait.");
                     await Task.Delay(delay);
