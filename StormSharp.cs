@@ -245,6 +245,12 @@ namespace StormSharpSDK
                     && !inUltimate && (RemnantAutokillableTar == null || ActiveRemnant == false))
                 //todo: alternate check for aghanims
                 {
+                var l = (this.Owner.Distance2D(target) - sliderValue) / sliderValue;
+                var posA = this.Owner.Position;
+                var posB = target.Position;
+                var x = (posA.X + (l * posB.X)) / (1 + l);
+                var y = (posA.Y + (l * posB.Y)) / (1 + l);
+                var position = new Vector3((int)x, (int)y, posA.Z);
                     Lightning.UseAbility(position); //TargetPosition this.Owner.Position 
                     int delay = (int)((Lightning.FindCastPoint() + Owner.GetTurnTime(position)) * 1250.0 + Game.Ping);
                     Log.Debug($"{delay}ms to wait.");
