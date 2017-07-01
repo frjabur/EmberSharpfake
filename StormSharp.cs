@@ -245,6 +245,7 @@ namespace StormSharpSDK
                     && !inUltimate && (RemnantAutokillableTar == null || ActiveRemnant == false))
                 //todo: alternate check for aghanims
                 {
+                var target = this.TargetSelector.Value.Active.GetTargets().FirstOrDefault(x => !x.IsInvulnerable() && x.Distance2D(this.Owner) <= this.Owner.AttackRange * 2);
                 var l = (this.Owner.Distance2D(target));
                 var posA = this.Owner.Position;
                 var posB = target.Position;
