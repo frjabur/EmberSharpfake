@@ -245,7 +245,7 @@ namespace StormSharpSDK
                     && !inUltimate && (RemnantAutokillableTar == null || ActiveRemnant == false))
                 //todo: alternate check for aghanims
                 {
-                var l = (this.Owner.Distance2D(target) - 20 / 20);
+                var l = (this.Owner.Distance2D(target) - 2 / 2);
                 var posA = this.Owner.Position;
                 var posB = target.Position;
                 var x = (posA.X + (l * posB.X)) / (1 + 1);
