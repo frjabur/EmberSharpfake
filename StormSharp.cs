@@ -138,7 +138,7 @@ namespace StormSharpSDK
                 //Based on whether they are moving or not, predict where they will be.
                 if (target.IsMoving)
                 {
-                    var PredictedPosition = EnsagePredict.InFront(hero, 0); //EnsagePredict.InFront(target, 200)
+                    var PredictedPosition = EnsagePredict.InFront(hero); //EnsagePredict.InFront(target, 200)
                     //Check the mana consumed from our prediction.
                     double TempManaConsumed = (Lightning.GetAbilityData("ball_lightning_initial_mana_base") + ((Lightning.GetAbilityData("ball_lightning_initial_mana_percentage") / 100) * Owner.MaximumMana))
                             + ((Ensage.SDK.Extensions.EntityExtensions.Distance2D(Owner, PredictedPosition) / 100) * (((Lightning.GetAbilityData("ball_lightning_travel_cost_percent") / 100) * Owner.MaximumMana)));
