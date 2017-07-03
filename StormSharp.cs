@@ -138,7 +138,7 @@ namespace StormSharpSDK
                 //Based on whether they are moving or not, predict where they will be.
                 if (target.IsMoving)
                 {
-                    var PredictedPosition = EnsagePredict.InFront(hero); //EnsagePredict.InFront(target, 200)
+                    var PredictedPosition = EnsagePredict.InFront(target, 300); //
                     //Check the mana consumed from our prediction.
                     double TempManaConsumed = (Lightning.GetAbilityData("ball_lightning_initial_mana_base") + ((Lightning.GetAbilityData("ball_lightning_initial_mana_percentage") / 100) * Owner.MaximumMana))
                             + ((Ensage.SDK.Extensions.EntityExtensions.Distance2D(Owner, PredictedPosition) / 100) * (((Lightning.GetAbilityData("ball_lightning_travel_cost_percent") / 100) * Owner.MaximumMana)));
@@ -258,7 +258,7 @@ namespace StormSharpSDK
                 //var x = (posA.X + (l * posB.X)) / (1 + l);
                 //var y = (posA.Y + (l * posB.Y)) / (1 + l);
                 //var position = new Vector3((int)x, (int)y, posA.Z);
-                    Lightning.UseAbility(Hero.InFront); //TargetPosition this.Owner.Position  Game.MousePosition
+                    Lightning.UseAbility(Game.MousePosition); //TargetPosition this.Owner.Position  Game.MousePosition
                     int delay = (int)((Lightning.FindCastPoint() + Owner.GetTurnTime(Game.MousePosition)) * 1250.0 + Game.Ping);
                     Log.Debug($"{delay}ms to wait.");
                     await Task.Delay(delay);
