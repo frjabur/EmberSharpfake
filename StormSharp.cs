@@ -138,14 +138,14 @@ namespace StormSharpSDK
                 //Based on whether they are moving or not, predict where they will be.
                 if (target.IsMoving)
                 {
-                    var PredictedPosition = EnsagePredict.InFront(target, 200); //era 300-----------------------------
+                    var PredictedPosition = EnsagePredict.InFront(target, 300);
                     //Check the mana consumed from our prediction.
                     double TempManaConsumed = (Lightning.GetAbilityData("ball_lightning_initial_mana_base") + ((Lightning.GetAbilityData("ball_lightning_initial_mana_percentage") / 100) * Owner.MaximumMana))
                             + ((Ensage.SDK.Extensions.EntityExtensions.Distance2D(Owner, PredictedPosition) / 100) * (((Lightning.GetAbilityData("ball_lightning_travel_cost_percent") / 100) * Owner.MaximumMana)));
                     if (TempManaConsumed <= Owner.Mana && !inUltimate)
                     {
                         Lightning.UseAbility(PredictedPosition);
-                        await Await.Delay((int)(Lightning.FindCastPoint() + Owner.GetTurnTime(PredictedPosition) * 250 + Game.Ping), token); //era 2250
+                        await Await.Delay((int)(Lightning.FindCastPoint() + Owner.GetTurnTime(PredictedPosition) * 2250 + Game.Ping), token);
                     }
                 }
 
@@ -157,7 +157,7 @@ namespace StormSharpSDK
                     if (TempManaConsumed <= Owner.Mana && !inUltimate)
                     {
                         Lightning.UseAbility(PredictedPosition);
-                        await Await.Delay((int)(Lightning.FindCastPoint() + Owner.GetTurnTime(PredictedPosition) * 250 + Game.Ping), token); //era 2250
+                        await Await.Delay((int)(Lightning.FindCastPoint() + Owner.GetTurnTime(PredictedPosition) * 2250 + Game.Ping), token);
                     }
 
                 }
@@ -203,7 +203,7 @@ namespace StormSharpSDK
                 if (UnitExtensions.HasModifier(Owner, "modifier_storm_spirit_overload") && target != null)
                 {
                     Owner.Attack(target);
-                    await Await.Delay(300); //tava 500------------------------------------------------------
+                    await Await.Delay(250); //tava 500------------------------------------------------------
                 }
 
                 //Vortex prioritization logic [do we have q/w enabled, do we have the mana to cast both, do they have lotus, do we have an overload modifier]
@@ -259,7 +259,7 @@ namespace StormSharpSDK
                 //var y = (posA.Y + (l * posB.Y)) / (1 + l);
                 //var position = new Vector3((int)x, (int)y, posA.Z);
                     Lightning.UseAbility(Game.MousePosition); //TargetPosition this.Owner.Position  Game.MousePosition
-                    int delay = (int)((Lightning.FindCastPoint() + Owner.GetTurnTime(Game.MousePosition)) * 1250.0 + Game.Ping);
+                    int delay = (int)((Lightning.FindCastPoint() + Owner.GetTurnTime(Game.MousePosition)) * 150.0 + Game.Ping); //1250.0
                     Log.Debug($"{delay}ms to wait.");
                     await Task.Delay(delay);
                 }
