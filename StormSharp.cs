@@ -203,7 +203,7 @@ namespace StormSharpSDK
                 if (UnitExtensions.HasModifier(Owner, "modifier_storm_spirit_overload") && target != null)
                 {
                     Owner.Attack(target);
-                    await Await.Delay(500); //tava 500------------------------------------------------------
+                    await Await.Delay(300); //tava 500------------------------------------------------------
                 }
 
                 //Vortex prioritization logic [do we have q/w enabled, do we have the mana to cast both, do they have lotus, do we have an overload modifier]
@@ -258,7 +258,7 @@ namespace StormSharpSDK
                 //var x = (posA.X + (l * posB.X)) / (1 + l);
                 //var y = (posA.Y + (l * posB.Y)) / (1 + l);
                 //var position = new Vector3((int)x, (int)y, posA.Z);
-                    Lightning.UseAbility(Game.MousePosition); //TargetPosition this.Owner.Position  Game.MousePosition
+                    Lightning.UseAbility(TargetPosition); //TargetPosition this.Owner.Position  Game.MousePosition
                     int delay = (int)((Lightning.FindCastPoint() + Owner.GetTurnTime(Game.MousePosition)) * 1250.0 + Game.Ping);
                     Log.Debug($"{delay}ms to wait.");
                     await Task.Delay(delay);
