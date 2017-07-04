@@ -132,20 +132,20 @@ namespace StormSharpSDK
 
             //Check for distance to target and push against slider value
             if (target != null && target.IsAlive
-                && Owner.Distance2D(target) >= 600 && Owner.Distance2D(target) <= UltDistance //era 400-----------------------------
+                && Owner.Distance2D(target) >= 500 && Owner.Distance2D(target) <= UltDistance //era 400-----------------------------
                 && Config.AbilityToggler.Value.IsEnabled(Lightning.Name) && !silenced)
             {
                 //Based on whether they are moving or not, predict where they will be.
                 if (target.IsMoving)
                 {
-                    var PredictedPosition = EnsagePredict.InFront(target, 300); //
+                    var PredictedPosition = EnsagePredict.InFront(target, 200); //era 300-----------------------------
                     //Check the mana consumed from our prediction.
                     double TempManaConsumed = (Lightning.GetAbilityData("ball_lightning_initial_mana_base") + ((Lightning.GetAbilityData("ball_lightning_initial_mana_percentage") / 100) * Owner.MaximumMana))
                             + ((Ensage.SDK.Extensions.EntityExtensions.Distance2D(Owner, PredictedPosition) / 100) * (((Lightning.GetAbilityData("ball_lightning_travel_cost_percent") / 100) * Owner.MaximumMana)));
                     if (TempManaConsumed <= Owner.Mana && !inUltimate)
                     {
                         Lightning.UseAbility(PredictedPosition);
-                        await Await.Delay((int)(Lightning.FindCastPoint() + Owner.GetTurnTime(PredictedPosition) * 2250 + Game.Ping), token);
+                        await Await.Delay((int)(Lightning.FindCastPoint() + Owner.GetTurnTime(PredictedPosition) * 250 + Game.Ping), token); //era 2250
                     }
                 }
 
