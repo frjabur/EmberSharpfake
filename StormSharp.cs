@@ -157,7 +157,7 @@ namespace StormSharpSDK
                     if (TempManaConsumed <= Owner.Mana && !inUltimate)
                     {
                         Lightning.UseAbility(PredictedPosition);
-                        await Await.Delay((int)(Lightning.FindCastPoint() + Owner.GetTurnTime(PredictedPosition) * 2250 + Game.Ping), token);
+                        await Await.Delay((int)(Lightning.FindCastPoint() + Owner.GetTurnTime(PredictedPosition) * 250 + Game.Ping), token); //era 2250
                     }
 
                 }
