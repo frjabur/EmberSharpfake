@@ -132,7 +132,7 @@ namespace StormSharpSDK
 
             //Check for distance to target and push against slider value
             if (target != null && target.IsAlive
-                && Owner.Distance2D(target) >= 400 && Owner.Distance2D(target) <= UltDistance
+                && Owner.Distance2D(target) >= 900 && Owner.Distance2D(target) <= UltDistance //era 400-----------------------------
                 && Config.AbilityToggler.Value.IsEnabled(Lightning.Name) && !silenced)
             {
                 //Based on whether they are moving or not, predict where they will be.
