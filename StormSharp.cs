@@ -64,7 +64,7 @@ namespace StormSharpSDK
 
         private Item BloodThorn { get; set; }
 
-        private Item HurricanePike { get; set; }
+        private Item Medallion { get; set; }
 
         private Item ShivasGuard { get; set; }
 
@@ -324,7 +324,7 @@ namespace StormSharpSDK
                 this.Medallion.CanBeCasted() &&
                 this.Config.ItemToggler.Value.IsEnabled("item_medallion_of_courage"))
             {
-                Log.Debug("Using Medallion");
+                Log.Debug("Using Medallion Of Courage");
                 this.Medallion.UseAbility(target);
                 await Await.Delay(this.GetItemDelay(target), token);
             }
