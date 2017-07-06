@@ -132,7 +132,7 @@ namespace StormSharpSDK
 
             //Check for distance to target and push against slider value
             if (target != null && target.IsAlive
-                && Owner.Distance2D(target) >= 500 && Owner.Distance2D(target) <= UltDistance //era 400-----------------------------
+                && Owner.Distance2D(target) >= 600 && Owner.Distance2D(target) <= UltDistance //era 400-----------------------------
                 && Config.AbilityToggler.Value.IsEnabled(Lightning.Name) && !silenced)
             {
                 //Based on whether they are moving or not, predict where they will be.
@@ -258,8 +258,8 @@ namespace StormSharpSDK
                 //var x = (posA.X + (l * posB.X)) / (1 + l);
                 //var y = (posA.Y + (l * posB.Y)) / (1 + l);
                 //var position = new Vector3((int)x, (int)y, posA.Z);
-                    Lightning.UseAbility(EnsagePredict.InFront(Owner, 50)); //TargetPosition this.Owner.Position  Game.MousePosition
-                    int delay = (int)((Lightning.FindCastPoint() + Owner.GetTurnTime(Game.MousePosition)) * 1250.0 + Game.Ping);
+                    Lightning.UseAbility(EnsagePredict.InFront(Owner, 50)); //TargetPosition this.Owner.Position  Game.MousePosition EnsagePredict.InFront(Owner, 50)
+                    int delay = (int)((Lightning.FindCastPoint() + Owner.GetTurnTime(EnsagePredict.InFront(Owner, 50))) * 1250.0 + Game.Ping);
                     Log.Debug($"{delay}ms to wait.");
                     await Task.Delay(delay);
                 }
