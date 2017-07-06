@@ -22,7 +22,7 @@ namespace StormSharpSDK
                                { "item_sheepstick", true },
                                { "item_shivas_guard", true },
                                { "item_medallion_of_courage", true },
-                               { "item_blink", true },
+                               { "item_solar_crest", true },
                                { "item_orchid", true },
                                { "item_rod_of_atos", true },
                                { "item_veil_of_discord", true },
