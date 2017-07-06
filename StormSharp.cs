@@ -318,14 +318,14 @@ namespace StormSharpSDK
                 await Await.Delay(this.GetItemDelay(target), token);
             }
 
-            if (this.HurricanePike != null &&
-                this.HurricanePike.IsValid &&
+            if (this.Medallion != null &&
+                this.Medallion.IsValid &&
                 target != null &&
-                this.HurricanePike.CanBeCasted() &&
-                this.Config.ItemToggler.Value.IsEnabled("item_hurricane_pike"))
+                this.Medallion.CanBeCasted() &&
+                this.Config.ItemToggler.Value.IsEnabled("item_medallion_of_courage"))
             {
-                Log.Debug("Using HurricanePike");
-                this.HurricanePike.UseAbility(target);
+                Log.Debug("Using Medallion");
+                this.Medallion.UseAbility(target);
                 await Await.Delay(this.GetItemDelay(target), token);
             }
 
@@ -458,8 +458,8 @@ namespace StormSharpSDK
                         this.SheepStick = item.Item;
                         break;
 
-                    case Ensage.AbilityId.item_hurricane_pike:
-                        this.HurricanePike = item.Item;
+                    case Ensage.AbilityId.item_medallion_of_courage:
+                        this.Medallion = item.Item;
                         break;
 
                     case Ensage.AbilityId.item_blink:
@@ -514,8 +514,8 @@ namespace StormSharpSDK
                             this.SheepStick = item.Item;
                             break;
 
-                        case Ensage.AbilityId.item_hurricane_pike:
-                            this.HurricanePike = item.Item;
+                        case Ensage.AbilityId.item_medallion_of_courage:
+                            this.Medallion = item.Item;
                             break;
 
                         case Ensage.AbilityId.item_blink:
@@ -557,8 +557,8 @@ namespace StormSharpSDK
                             this.SheepStick = null;
                             break;
 
-                        case Ensage.AbilityId.item_hurricane_pike:
-                            this.HurricanePike = null;
+                        case Ensage.AbilityId.item_medallion_of_courage:
+                            this.Medallion = null;
                             break;
 
                         case Ensage.AbilityId.item_blink:
