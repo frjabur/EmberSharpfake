@@ -144,7 +144,7 @@ namespace StormSharpSDK
                             + ((Ensage.SDK.Extensions.EntityExtensions.Distance2D(Owner, PredictedPosition) / 100) * (((Lightning.GetAbilityData("ball_lightning_travel_cost_percent") / 100) * Owner.MaximumMana)));
                     if (TempManaConsumed <= Owner.Mana && !inUltimate)
                     {
-                        Lightning.UseAbility(Hero.InFront(50)); //PredictedPosition
+                        Lightning.UseAbility(PredictedPosition); //
                         await Await.Delay((int)(Lightning.FindCastPoint() + Owner.GetTurnTime(PredictedPosition) * 2250 + Game.Ping), token);
                     }
                 }
@@ -258,7 +258,7 @@ namespace StormSharpSDK
                 //var x = (posA.X + (l * posB.X)) / (1 + l);
                 //var y = (posA.Y + (l * posB.Y)) / (1 + l);
                 //var position = new Vector3((int)x, (int)y, posA.Z);
-                    Lightning.UseAbility(Game.MousePosition); //TargetPosition this.Owner.Position  Game.MousePosition
+                    Lightning.UseAbility(Hero.InFront(50)); //TargetPosition this.Owner.Position  Game.MousePosition
                     int delay = (int)((Lightning.FindCastPoint() + Owner.GetTurnTime(Game.MousePosition)) * 1250.0 + Game.Ping);
                     Log.Debug($"{delay}ms to wait.");
                     await Task.Delay(delay);
