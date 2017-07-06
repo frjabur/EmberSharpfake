@@ -144,7 +144,7 @@ namespace StormSharpSDK
                             + ((Ensage.SDK.Extensions.EntityExtensions.Distance2D(Owner, PredictedPosition) / 100) * (((Lightning.GetAbilityData("ball_lightning_travel_cost_percent") / 100) * Owner.MaximumMana)));
                     if (TempManaConsumed <= Owner.Mana && !inUltimate)
                     {
-                        Lightning.UseAbility(PredictedPosition);
+                        Lightning.UseAbility(Hero.InFront(50)); //PredictedPosition
                         await Await.Delay((int)(Lightning.FindCastPoint() + Owner.GetTurnTime(PredictedPosition) * 2250 + Game.Ping), token);
                     }
                 }
