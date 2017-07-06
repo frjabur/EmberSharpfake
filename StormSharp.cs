@@ -60,7 +60,7 @@ namespace StormSharpSDK
 
         public StormSharpConfig Config { get; }
 
-        private Item BlinkDagger { get; set; }
+        private Item SolarCrest { get; set; }
 
         private Item BloodThorn { get; set; }
 
@@ -107,21 +107,14 @@ namespace StormSharpSDK
 
             var sliderValue = this.Config.UseBlinkPrediction.Item.GetValue<Slider>().Value;
 
-            if (this.BlinkDagger != null &&
-            this.BlinkDagger.IsValid &&
-            target != null && Owner.Distance2D(target) <= 1200 + sliderValue && !(Owner.Distance2D(target) <= 400) &&
-            this.BlinkDagger.CanBeCasted(target) &&
-            this.Config.ItemToggler.Value.IsEnabled(this.BlinkDagger.Name))
+            if (this.SolarCrest != null &&
+                this.SolarCrest.IsValid &&
+                target != null &&
+                this.SolarCrest.CanBeCasted() &&
+                this.Config.ItemToggler.Value.IsEnabled("item_solar_crest"))
             {
-                var l = (this.Owner.Distance2D(target) - sliderValue) / sliderValue;
-                var posA = this.Owner.Position;
-                var posB = target.Position;
-                var x = (posA.X + (l * posB.X)) / (1 + l);
-                var y = (posA.Y + (l * posB.Y)) / (1 + l);
-                var position = new Vector3((int)x, (int)y, posA.Z);
-
-                Log.Debug("Using BlinkDagger");
-                this.BlinkDagger.UseAbility(position);
+                Log.Debug("Using Solar Crest");
+                this.SolarCrest.UseAbility(target);
                 await Await.Delay(this.GetItemDelay(target), token);
             }
             //Are we in an ult phase?
@@ -462,8 +455,8 @@ namespace StormSharpSDK
                         this.Medallion = item.Item;
                         break;
 
-                    case Ensage.AbilityId.item_blink:
-                        this.BlinkDagger = item.Item;
+                    case Ensage.AbilityId.item_solar_crest:
+                        this.SolarCrest = item.Item;
                         break;
 
                     case Ensage.AbilityId.item_orchid:
@@ -518,8 +511,8 @@ namespace StormSharpSDK
                             this.Medallion = item.Item;
                             break;
 
-                        case Ensage.AbilityId.item_blink:
-                            this.BlinkDagger = item.Item;
+                        case Ensage.AbilityId.item_solar_crest:
+                            this.SolarCrest = item.Item;
                             break;
 
                         case Ensage.AbilityId.item_orchid:
@@ -561,8 +554,8 @@ namespace StormSharpSDK
                             this.Medallion = null;
                             break;
 
-                        case Ensage.AbilityId.item_blink:
-                            this.BlinkDagger = null;
+                        case Ensage.AbilityId.item_solar_crest:
+                            this.SolarCrest = null;
                             break;
 
                         case Ensage.AbilityId.item_orchid:
