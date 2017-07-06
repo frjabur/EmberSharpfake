@@ -345,7 +345,7 @@ namespace StormSharpSDK
                 await Await.Delay(this.GetItemDelay(target), token);
             }
             
-                        if (this.SolarCrest != null &&
+            if (this.SolarCrest != null &&
                 this.SolarCrest.IsValid &&
                 target != null &&
                 this.SolarCrest.CanBeCasted() &&
