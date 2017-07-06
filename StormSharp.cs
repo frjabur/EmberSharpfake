@@ -344,6 +344,17 @@ namespace StormSharpSDK
                 this.Mjollnir.UseAbility(Owner);
                 await Await.Delay(this.GetItemDelay(target), token);
             }
+            
+                        if (this.SolarCrest != null &&
+                this.SolarCrest.IsValid &&
+                target != null &&
+                this.SolarCrest.CanBeCasted() &&
+                this.Config.ItemToggler.Value.IsEnabled("item_solar_crest"))
+            {
+                Log.Debug("Using Solar Crest");
+                this.SolarCrest.UseAbility(target);
+                await Await.Delay(this.GetItemDelay(target), token);
+            }
 
             if (this.Orbwalker.OrbwalkTo(target))
             {
